@@ -1,0 +1,16 @@
+def setup():
+    size(500,600)
+    smooth()
+    background(235)
+    noStroke()
+    noLoop()
+    
+def draw():
+    for i in range(0,10):
+        for k in range(0,10,2):
+            fill(0+ i*20)
+            rect(i*40+50,50+40*k,35,35) 
+    for l in range(0,10):
+        for h in range(0,10,2):
+            fill(200-20*l)
+            rect(l*40+50,90+40*h,35,35)
