@@ -1,0 +1,12 @@
+def setup():
+    size (3000,300)
+    smooth ()
+    strokeWeight (30)
+    stroke (100)
+    #noLoop ()
+
+def draw():
+    background(0)
+    line (frameCount,100,100+frameCount,200)
+    line (100+frameCount,100,frameCount,200)
+    println(frameCount)
