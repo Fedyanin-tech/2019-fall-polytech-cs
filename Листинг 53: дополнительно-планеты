@@ -1,0 +1,70 @@
+counter = 0
+counter1 = 0
+cx = 0
+cy = 0
+fsize = 0
+
+class FunnyCircle():
+
+    def setCenter(self, x,y):
+        self.cx = x
+        self.cy = y
+
+    def setSize(self, size):
+        self.size = size
+
+    def render(self):
+        ellipse(self.cx, self.cy, self.size, self.size)
+
+
+funnyCircle = FunnyCircle()
+f = FunnyCircle()
+o = FunnyCircle()
+u = FunnyCircle()
+O = FunnyCircle()
+
+def setup():
+    size(800,800)
+    smooth()
+    funnyCircle.setSize(100)
+    f.setSize(50)
+    o.setSize(400)
+    O.setSize(700)
+    u.setSize(75)
+    
+def draw():
+    background(255)
+    fill(50)
+    global counter,counter1
+    
+    objX = mouseX +sin(counter)*200
+    objY = mouseY +cos(counter)*200
+    objX1 = mouseX +sin(counter1)*350
+    objY1 = mouseY +cos(counter1)*350
+   
+
+       
+    funnyCircle.setCenter(mouseX, mouseY)
+    fill(0,0,100)
+    funnyCircle.render()
+    
+    f.setCenter(objX, objY)
+    fill(50)
+    f.render()
+    
+    o.setCenter(mouseX, mouseY)
+    noFill()
+    strokeWeight(0)
+    o.render()
+    
+    u.setCenter(objX1, objY1)
+    fill(100,0,0)
+    u.render()
+    
+    O.setCenter(mouseX, mouseY)
+    noFill()
+    strokeWeight(0)
+    O.render()
+    
+    counter +=0.03
+    counter1 +=0.005
