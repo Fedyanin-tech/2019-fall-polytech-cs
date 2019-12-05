@@ -1,9 +1,6 @@
 add_library('sound')
 from processing import sound
 s = sound.Sound(this)
-sin = sound.SoundFile(this, 'otskok.wav')
-sin = sound.SoundFile(this, 'otskok1.wav')
-sin = sound.SoundFile(this, 'otskok2.wav')
 def reset():
     global x,y,diam,rectSize,speedX,speedY, s, q
     #движение мячика
@@ -58,7 +55,7 @@ def draw():
     if x > width-30 and x < width+30 and y > mouseY-rectSize/2 and  y < mouseY+rectSize/2:
         speedX = speedX * -1
         #звук отскока
-        
+        sin = sound.SoundFile(this, 'otskok.wav')
         sin.play()
         amplitude = map(mouseX, 0, height, 100, 1000000000000)
         s.volume(1)
@@ -79,7 +76,7 @@ def draw():
         x += speedX
         
         #звук отскока
-        
+        sin = sound.SoundFile(this, 'otskok1.wav')
         sin.play()
         amplitude = map(mouseX, 0, height, 100, 100000000000000)
         s.volume(1)
@@ -89,7 +86,7 @@ def draw():
         speedY *= -1
         
         #звук отскока
-        
+        sin = sound.SoundFile(this, 'otskok2.wav')
         sin.play()
         amplitude = map(mouseX, 0, height, 100, 1000000000000)
         s.volume(1)
@@ -98,4 +95,3 @@ def draw():
 def keyPressed():
     if key=='r':
         reset()       
-                                 
