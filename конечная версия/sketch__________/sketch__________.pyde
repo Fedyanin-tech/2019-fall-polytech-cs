@@ -12,8 +12,8 @@ def reset():
     y = height/2
     
 #переменные задающие скорость
-    speedX=random(15,20)
-    speedY=random(15,20)
+    speedX=random(20,25)
+    speedY=random(5,8)
     
 #параметры    
     diam = 15
@@ -22,8 +22,7 @@ def reset():
     
     
 def setup():
-    size(1000,750)
-    #fullScreen()
+    size(1200,800)
     noSmooth()
     global img1, img2, s, sin
     img1 = loadImage("kianu.jpg")
@@ -82,7 +81,7 @@ def draw():
             
  #если мячик отскакивает от стенки
     if x < 25:
-        speedX *= -random(0.8, 1.2)
+        speedX *= -random(0.8, 1.3)
         speedY *=  random(0.8, 1.2)
         
       #звук отскока
