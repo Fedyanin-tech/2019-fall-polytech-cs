@@ -8,7 +8,7 @@ def reset():
     global x, y, diam, rectSize, speedX, speedY, q
     
 #начальное положение мячика
-    x = width/2 - 500
+    x = width/2 - 750
     y = height/2
     
 #переменные задающие скорость
@@ -17,7 +17,7 @@ def reset():
     
 #параметры    
     diam = 15
-    rectSize = 200;
+    rectSize = 200
     q=0
     
     
@@ -25,10 +25,13 @@ def setup():
     fullScreen()
     noSmooth()
     global img1, img2, s, sin, si, sii
+#импорт пикч
     img1 = loadImage("kianu.jpg")
     img2 = loadImage("pianu.jpg")
+#импорт шрифта
     loadFont("123.vlw")
     textFont(loadFont("123.vlw"), 48)
+#импорт звука
     s = sound.Sound(this)
     sin = sound.SoundFile(this, 'otskok0.wav')
     si = sound.SoundFile(this, 'otskok1.wav')
@@ -53,8 +56,11 @@ def draw():
  #платформы
     rectMode(CORNER)
     fill(255)
+    #стенка
     rect(0, 0, 20, height)
+    #потолок
     rect(20, 0, width-25, 20)
+    #пол
     rect(20, height-20, width-25, 20)
  #ракетка
     rect(width-30, mouseY-rectSize/2, 10, rectSize)
