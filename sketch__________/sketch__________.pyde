@@ -122,8 +122,7 @@ def draw():
         if q > 20:
             imageMode(CENTER)
             image(img1, mouseX, mouseY)
-        if q > 35:
-            img = loadImage("pianu.jpg")
+        if q > 0:
             imageMode(CENTER)
             image(img2, mouseX, mouseY)
         if mousePressed:
