@@ -1,4 +1,4 @@
-#библиотеки
+#Р±РёР±Р»РёРѕС‚РµРєРё
 add_library('sound')
 from processing import sound
 
@@ -7,17 +7,17 @@ def reset():
     
     global x, y, diam, rectSize, speedX, speedY, q
     
-#начальное положение мячика
-    x = width/2 - 500
+#РЅР°С‡Р°Р»СЊРЅРѕРµ РїРѕР»РѕР¶РµРЅРёРµ РјСЏС‡РёРєР°
+    x = width/2 - 750
     y = height/2
     
-#переменные задающие скорость
+#РїРµСЂРµРјРµРЅРЅС‹Рµ Р·Р°РґР°СЋС‰РёРµ СЃРєРѕСЂРѕСЃС‚СЊ
     speedX = random(20, 25)
     speedY = random(6, 8)
     
-#параметры    
+#РїР°СЂР°РјРµС‚СЂС‹    
     diam = 15
-    rectSize = 200;
+    rectSize = 200
     q=0
     
     
@@ -25,99 +25,104 @@ def setup():
     fullScreen()
     noSmooth()
     global img1, img2, s, sin, si, sii
+#РёРјРїРѕСЂС‚ РїРёРєС‡
     img1 = loadImage("kianu.jpg")
     img2 = loadImage("pianu.jpg")
+#РёРјРїРѕСЂС‚ С€СЂРёС„С‚Р°
     loadFont("123.vlw")
     textFont(loadFont("123.vlw"), 48)
+#РёРјРїРѕСЂС‚ Р·РІСѓРєР°
     s = sound.Sound(this)
     sin = sound.SoundFile(this, 'otskok0.wav')
     si = sound.SoundFile(this, 'otskok1.wav')
     sii = sound.SoundFile(this, 'otskok2.wav')
-#начало
+#РЅР°С‡Р°Р»Рѕ
     reset()
     
     
 def draw():
     noStroke()
     global x, y, speedX, speedY, diam, rectSize, s, q, img1, img2, sin, si, sii
-#фон
+#С„РѕРЅ
     fill(0, 0, 0)
     rect(0, 0, width, height)
     
     
-#объекты:
- #мячик
+#РѕР±СЉРµРєС‚С‹:
+ #РјСЏС‡РёРє
     fill(255)
     ellipse(x, y, diam, diam)
     
- #платформы
+ #РїР»Р°С‚С„РѕСЂРјС‹
     rectMode(CORNER)
     fill(255)
+    #СЃС‚РµРЅРєР°
     rect(0, 0, 20, height)
+    #РїРѕС‚РѕР»РѕРє
     rect(20, 0, width-25, 20)
+    #РїРѕР»
     rect(20, height-20, width-25, 20)
- #ракетка
+ #СЂР°РєРµС‚РєР°
     rect(width-30, mouseY-rectSize/2, 10, rectSize)
     
- #граница
+ #РіСЂР°РЅРёС†Р°
     stroke(255, 0, 0)
     line(width-5, 0, width-5, height)
     
     
-#процесс:    
- #движение(отрисовка) мячика задаваемое "скоростью" 
+#РїСЂРѕС†РµСЃСЃ:    
+ #РґРІРёР¶РµРЅРёРµ(РѕС‚СЂРёСЃРѕРІРєР°) РјСЏС‡РёРєР° Р·Р°РґР°РІР°РµРјРѕРµ "СЃРєРѕСЂРѕСЃС‚СЊСЋ" 
     x += speedX
     y += speedY
 
- #если игрок отбивает мяч
+ #РµСЃР»Рё РёРіСЂРѕРє РѕС‚Р±РёРІР°РµС‚ РјСЏС‡
     if x > width - 45 and x < width + 30 and y > mouseY - rectSize/2 and  y < mouseY + rectSize/2:
         speedX = speedX * -1
         
-       #звук отскока
+       #Р·РІСѓРє РѕС‚СЃРєРѕРєР°
         sin.play()
        
-  #отрисовка поинтов
+  #РѕС‚СЂРёСЃРѕРІРєР° РїРѕРёРЅС‚РѕРІ
         q = q + 1
     textAlign( RIGHT )         
     text(str(q), 80, 80)
             
- #если мячик отскакивает от стенки
+ #РµСЃР»Рё РјСЏС‡РёРє РѕС‚СЃРєР°РєРёРІР°РµС‚ РѕС‚ СЃС‚РµРЅРєРё
     if x < 45:
         speedX *= -random(0.9, 1.2)
         speedY *=  random(0.8, 1.2)
         
-      #звук отскока
+      #Р·РІСѓРє РѕС‚СЃРєРѕРєР°
         si.play()
     
         
- #если мячик отскакивает от пола или потолка   
+ #РµСЃР»Рё РјСЏС‡РёРє РѕС‚СЃРєР°РєРёРІР°РµС‚ РѕС‚ РїРѕР»Р° РёР»Рё РїРѕС‚РѕР»РєР°   
     if  y > height - 35 or y < 35:  
         speedY *= -1
         
-     #звук отскока
+     #Р·РІСѓРє РѕС‚СЃРєРѕРєР°
         sii.play()
     
         
  #game over    
     if x > width + 31:
-        #фон:
+        #С„РѕРЅ:
         rectMode(CENTER)
         fill(255)
         rect(width/2, height/2, width, height)
         
-        #текст:
+        #С‚РµРєСЃС‚:
         fill(0)
         textAlign( RIGHT )
         text('YOUR SCORE =', width/2, height/2 -50)    
         text(str(q), width/2 +50, height/2 -50)
         text('Press R to restart', width/2, height/2 +50)
         
-        #условие пасхалок
+        #СѓСЃР»РѕРІРёРµ РїР°СЃС…Р°Р»РѕРє
         if q > 20:
             imageMode(CENTER)
             image(img1, mouseX, mouseY)
-        if q > 35:
-            img = loadImage("pianu.jpg")
+        if q > 0:
             imageMode(CENTER)
             image(img2, mouseX, mouseY)
         if mousePressed:
@@ -127,7 +132,7 @@ def draw():
                     text('your score will never reach 2153',210 + t * 200, ty * 150 + t * 50)
   
                                       
-#рестарт
+#СЂРµСЃС‚Р°СЂС‚
 def keyPressed():
     if key == 'r':
         reset()
